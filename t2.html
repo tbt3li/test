@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Static Page</title>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <main>
+        <h1>Welcome to my Static Page</h1>
+        <p>This content doesn't repeat the header and footer code.</p>
+    </main>
+
+    <div id="footer"></div>
+
+    <script>
+        // Fetch header and footer files dynamically
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+            });
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+    </script>
+</body>
+
+</html>
