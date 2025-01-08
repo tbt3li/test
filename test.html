@@ -15,11 +15,11 @@
     <script>
         $(document).ready(function() {
             $('#fetchDataBtn').click(function() {
-                // Make an AJAX GET request to the PHP file on AwardSpace
+                // Make an AJAX GET request to the PHP file on AwardSpace using CORS Anywhere as a proxy
                 $.ajax({
-                    url: 'https://t3li.atwebpages.com/test/t.php',  // Replace with your actual PHP file URL
+                    url: 'https://cors-anywhere.herokuapp.com/http://t3li.atwebpages.com/test/t.php',  // Use CORS proxy
                     type: 'GET',
-                    dataType: 'json',  // Expecting JSON response
+                    dataType: 'json',  // Expecting JSON response from PHP file
                     success: function(response) {
                         // If successful, display the response in the HTML
                         $('#phpDataResult').html(
