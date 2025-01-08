@@ -9,7 +9,7 @@
         // Function to fetch data from PHP server
         function fetchData() {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://t3li.atwebpages.com/test/t.php', true);
+            xhr.open('GET', 'https://t3li.atwebpages.com/test/t.php', true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     // When the response is received, display it in the div
