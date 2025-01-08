@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Include Example</title>
+    <style>
+        header, footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Footer Containers -->
+    <div id="header"></div>
+    <main>
+        <h2>Main Content Here</h2>
+        <p>This is the main section of your webpage.</p>
+    </main>
+    <div id="footer"></div>
+
+    <!-- JavaScript to Include Files -->
+    <script>
+        // Function to load an HTML file into a container
+        async function loadHTML(containerId, filePath) {
+            try {
+                const response = await fetch(filePath); // Fetch the external file
+                if (response.ok) {
+                    const html = await response.text();  // Get the file's content
+                    document.getElementById(containerId).innerHTML = html; // Inject the content
+                } else {
+                    console.error(`Error loading ${filePath}: ${response.status}`);
+                }
+            } catch (error) {
+                console.error(`Error fetching file ${filePath}:`, error);
+            }
+        }
+
+        // Load the header and footer dynamically
+        loadHTML('header', 'header.html');
+        loadHTML('footer', 'footer.html');
+    </script>
+</body>
+</html>
