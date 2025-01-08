@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Page with PHP Response</title>
+    <script>
+        // Function to fetch data from PHP server
+        function fetchData() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://t3li.atwebpages.com/test/t.php', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // When the response is received, display it in the div
+                    document.getElementById('response').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to My Static Page with PHP Interaction</h1>
+    <button onclick="fetchData()">Get Response from PHP</button>
+    <div id="response"></div> <!-- Area where the PHP response will be displayed -->
+</body>
+
+</html>
