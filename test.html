@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Page with PHP Response</title>
-    <script>
-        // Function to fetch data from PHP server
-        function fetchData() {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://t3li.atwebpages.com/test/t.php', true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // When the response is received, display it in the div
-                    document.getElementById('response').innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
-    </script>
+    <title>Get PHP Data from AwardSpace</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  <!-- jQuery CDN -->
 </head>
-
 <body>
-    <h1>Welcome to My Static Page with PHP Interaction</h1>
-    <button onclick="fetchData()">Get Response from PHP</button>
-    <div id="response"></div> <!-- Area where the PHP response will be displayed -->
-</body>
 
+    <h1>Get Data from PHP File</h1>
+    <button id="fetchDataBtn">Fetch PHP Data</button>
+    <div id="phpDataResult"></div> <!-- Container for showing the response -->
+
+    <script>
+        $(document).ready(function() {
+            $('#fetchDataBtn').click(function() {
+                // Make an AJAX GET request to the PHP file on AwardSpace
+                $.ajax({
+                    url: 'https://yourdomain.awardspace.com/your-php-file.php',  // Replace with your actual PHP file URL
+                    type: 'GET',
+                    dataType: 'json',  // Expecting JSON response
+                    success: function(response) {
+                        // If successful, display the response in the HTML
+                        $('#phpDataResult').html(
+                            '<strong>Message:</strong> ' + response.message + '<br>' +
+                            '<strong>Status:</strong> ' + response.status + '<br>' +
+                            '<strong>Time:</strong> ' + response.time
+                        );
+                    },
+                    error: function() {
+                        // If error occurs
+                        $('#phpDataResult').html('<strong>Error retrieving data!</strong>');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
 </html>
